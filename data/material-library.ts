@@ -19,6 +19,24 @@ export interface MaterialDocument {
 
 export const MATERIAL_LIBRARY: MaterialDocument[] = [
   {
+    id: "global-tax-knowledge-platform-landscape",
+    title: "Global Tax Knowledge Platform Landscape: Competitive Intelligence Research",
+    description:
+      "Analisis komprehensif 30+ platform pengetahuan pajak global dengan benchmarking PAJAKKU vs Bloomberg Tax, Thomson Reuters, dan peluang CORETAX DJP.",
+    category: "Riset",
+    year: 2026,
+    pages: 50,
+    pagesLabel: "halaman",
+    fileType: "PDF",
+    fileSizeBytes: 43363,
+    updatedAt: "2026-02-26",
+    publisher: "Dokumen User",
+    coverPath: "/materials/covers/global-tax-knowledge-platform-landscape.svg",
+    filePath: "/materi/global-tax-knowledge-platform-landscape",
+    isInternal: true,
+    tags: ["Global Analysis", "Competitive Intelligence", "Platform Benchmark", "Strategic Research"],
+  },
+  {
     id: "panduan-total-lapor-spt-karyawan-coretax-2025",
     title: "Panduan Total Lapor SPT Tahunan Karyawan via Coretax DJP 2025",
     description:

@@ -1,11 +1,23 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { BookOpen, CalendarClock, Download, ExternalLink, FileText, LibraryBig } from "lucide-react";
+import { 
+  BookOpen, 
+  CalendarClock, 
+  Download, 
+  ExternalLink, 
+  FileText, 
+  LibraryBig, 
+  Upload, 
+  Plus,
+  Search,
+  Filter
+} from "lucide-react";
 import { Footer } from "@/components/layout/footer";
 import { Badge } from "@/components/ui/badge";
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { MATERIAL_LIBRARY, formatBytesToMB } from "@/data/material-library";
 import { cn } from "@/lib/utils";
 
@@ -19,59 +31,109 @@ const TOTAL_SIZE_MB = MATERIAL_LIBRARY
   .reduce((total, item) => total + item.fileSizeBytes, 0) /
   (1024 * 1024);
 
+// Get unique categories
+const categories = Array.from(new Set(MATERIAL_LIBRARY.map(item => item.category)));
+
 export default function MateriPage() {
   return (
     <div>
       <div className="mx-auto max-w-7xl px-4 py-8 md:px-6">
+        {/* Hero Section */}
         <section className="relative overflow-hidden rounded-2xl border bg-gradient-to-br from-primary/10 via-background to-primary/5 p-6 md:p-8">
           <div className="pointer-events-none absolute -right-12 -top-12 h-44 w-44 rounded-full bg-primary/15 blur-3xl" />
           <div className="pointer-events-none absolute -left-12 -bottom-16 h-48 w-48 rounded-full bg-blue-400/10 blur-3xl" />
-          <div className="relative flex items-start gap-3">
-            <div className="rounded-xl bg-primary/15 p-2.5">
-              <LibraryBig className="h-6 w-6 text-primary" />
+          <div className="relative flex flex-col md:flex-row md:items-start gap-4 md:gap-6">
+            <div className="rounded-xl bg-primary/15 p-3 shrink-0">
+              <LibraryBig className="h-8 w-8 text-primary" />
             </div>
-            <div className="max-w-3xl">
-              <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
+            <div className="flex-1 min-w-0">
+              <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
                 Materi & Riset
               </h1>
-              <p className="mt-2 text-muted-foreground">
+              <p className="mt-2 text-muted-foreground max-w-2xl">
                 Kumpulan dokumen yang dikirim user, disusun dalam format library agar mudah
                 dibuka, dipelajari, dan diunduh ulang kapan pun dibutuhkan.
               </p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                <Link href="/materi/upload">
+                  <Button size="sm" className="gap-2">
+                    <Upload className="h-4 w-4" />
+                    Upload Materi
+                  </Button>
+                </Link>
+                <a 
+                  href="#library"
+                  className={cn(buttonVariants({ variant: "outline", size: "sm" }), "gap-2")}
+                >
+                  <BookOpen className="h-4 w-4" />
+                  Jelajahi Library
+                </a>
+              </div>
             </div>
           </div>
         </section>
 
+        {/* Stats */}
         <section className="mt-6 grid gap-3 sm:grid-cols-3">
-          <div className="rounded-lg border p-4">
-            <p className="text-2xl font-bold text-primary">{MATERIAL_LIBRARY.length}</p>
-            <p className="text-xs text-muted-foreground">Dokumen</p>
-          </div>
-          <div className="rounded-lg border p-4">
-            <p className="text-2xl font-bold text-primary">{TOTAL_CONTENT_UNITS}</p>
-            <p className="text-xs text-muted-foreground">Total Unit Konten</p>
-          </div>
-          <div className="rounded-lg border p-4">
-            <p className="text-2xl font-bold text-primary">{TOTAL_SIZE_MB.toFixed(1)} MB</p>
-            <p className="text-xs text-muted-foreground">Total Ukuran File</p>
+          <Card className="bg-gradient-to-br from-blue-50 to-blue-100/50 dark:from-blue-950/30 dark:to-blue-900/20">
+            <CardContent className="p-4">
+              <p className="text-3xl font-bold text-blue-600">{MATERIAL_LIBRARY.length}</p>
+              <p className="text-xs text-muted-foreground">Total Dokumen</p>
+            </CardContent>
+          </Card>
+          <Card className="bg-gradient-to-br from-green-50 to-green-100/50 dark:from-green-950/30 dark:to-green-900/20">
+            <CardContent className="p-4">
+              <p className="text-3xl font-bold text-green-600">{TOTAL_CONTENT_UNITS}</p>
+              <p className="text-xs text-muted-foreground">Total Unit Konten</p>
+            </CardContent>
+          </Card>
+          <Card className="bg-gradient-to-br from-purple-50 to-purple-100/50 dark:from-purple-950/30 dark:to-purple-900/20">
+            <CardContent className="p-4">
+              <p className="text-3xl font-bold text-purple-600">{TOTAL_SIZE_MB.toFixed(1)} MB</p>
+              <p className="text-xs text-muted-foreground">Total Ukuran File</p>
+            </CardContent>
+          </Card>
+        </section>
+
+        {/* Category Filter */}
+        <section className="mt-8">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <h2 className="text-xl font-semibold">Kategori</h2>
+              <p className="text-sm text-muted-foreground">Filter materi berdasarkan kategori</p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <Badge variant="default" className="cursor-pointer">Semua</Badge>
+              {categories.map((category) => (
+                <Badge key={category} variant="outline" className="cursor-pointer hover:bg-muted">
+                  {category}
+                </Badge>
+              ))}
+            </div>
           </div>
         </section>
 
-        <section className="mt-8">
-          <div className="flex items-center justify-between gap-3">
-            <h2 className="text-xl font-semibold">Library Dokumen</h2>
-            <Badge variant="outline" className="text-xs">
-              Diperbarui otomatis saat ada materi baru
+        {/* Library Grid */}
+        <section id="library" className="mt-8">
+          <div className="flex items-center justify-between gap-3 mb-4">
+            <div>
+              <h2 className="text-xl font-semibold">Library Dokumen</h2>
+              <p className="text-sm text-muted-foreground">
+                Dokumen terbaru dan terpopuler dari komunitas
+              </p>
+            </div>
+            <Badge variant="outline" className="text-xs shrink-0">
+              Diperbarui otomatis
             </Badge>
           </div>
 
-          <div className="mt-4 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
             {MATERIAL_LIBRARY.map((doc) => (
               <Card
                 key={doc.id}
                 className="group flex h-full flex-col overflow-hidden border-border/70 transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg"
               >
-                <div className="relative h-56 overflow-hidden border-b bg-muted/20">
+                <div className="relative h-48 overflow-hidden border-b bg-muted/20">
                   <Image
                     src={doc.coverPath}
                     alt={`Cover ${doc.title}`}
@@ -101,8 +163,8 @@ export default function MateriPage() {
                       {doc.year}
                     </Badge>
                   </div>
-                  <CardTitle className="text-lg leading-tight">{doc.title}</CardTitle>
-                  <CardDescription className="text-sm leading-relaxed">
+                  <CardTitle className="text-base leading-tight line-clamp-2">{doc.title}</CardTitle>
+                  <CardDescription className="text-sm leading-relaxed line-clamp-2">
                     {doc.description}
                   </CardDescription>
                 </CardHeader>
@@ -125,7 +187,7 @@ export default function MateriPage() {
                     </div>
                   </div>
                   <div className="mt-3 flex flex-wrap gap-1.5">
-                    {doc.tags.map((tag) => (
+                    {doc.tags.slice(0, 3).map((tag) => (
                       <span
                         key={tag}
                         className="rounded-full border bg-background px-2 py-0.5 text-[10px] text-muted-foreground"
@@ -133,6 +195,11 @@ export default function MateriPage() {
                         {tag}
                       </span>
                     ))}
+                    {doc.tags.length > 3 && (
+                      <span className="rounded-full border bg-background px-2 py-0.5 text-[10px] text-muted-foreground">
+                        +{doc.tags.length - 3}
+                      </span>
+                    )}
                   </div>
                 </CardContent>
 
@@ -142,7 +209,7 @@ export default function MateriPage() {
                       href={doc.filePath}
                       className={cn(buttonVariants({ variant: "outline", size: "sm" }), "w-full")}
                     >
-                      <ExternalLink className="h-4 w-4" />
+                      <ExternalLink className="h-4 w-4 mr-1" />
                       Buka
                     </Link>
                   ) : (
@@ -152,7 +219,7 @@ export default function MateriPage() {
                       rel="noopener noreferrer"
                       className={cn(buttonVariants({ variant: "outline", size: "sm" }), "w-full")}
                     >
-                      <ExternalLink className="h-4 w-4" />
+                      <ExternalLink className="h-4 w-4 mr-1" />
                       Buka
                     </a>
                   )}
@@ -162,7 +229,7 @@ export default function MateriPage() {
                       download
                       className={cn(buttonVariants({ size: "sm" }), "w-full")}
                     >
-                      <Download className="h-4 w-4" />
+                      <Download className="h-4 w-4 mr-1" />
                       {doc.fileType === "GUIDE" ? "Unduh Kit" : "Download"}
                     </a>
                   ) : (
@@ -170,7 +237,7 @@ export default function MateriPage() {
                       href={doc.filePath}
                       className={cn(buttonVariants({ size: "sm" }), "w-full")}
                     >
-                      <ExternalLink className="h-4 w-4" />
+                      <ExternalLink className="h-4 w-4 mr-1" />
                       Detail
                     </Link>
                   )}
@@ -178,6 +245,34 @@ export default function MateriPage() {
               </Card>
             ))}
           </div>
+        </section>
+
+        {/* Upload CTA */}
+        <section className="mt-12">
+          <Card className="bg-gradient-to-r from-violet-50 to-indigo-50 dark:from-violet-950/30 dark:to-indigo-950/20 border-violet-200">
+            <CardContent className="p-6 md:p-8">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-violet-100 dark:bg-violet-900/50 rounded-xl shrink-0">
+                    <Upload className="h-6 w-6 text-violet-600 dark:text-violet-400" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-lg">Punya Materi Pajak?</h3>
+                    <p className="text-sm text-muted-foreground mt-1">
+                      Bagikan dokumen, riset, atau panduan pajak Anda ke library PAJAKKU. 
+                      Bantu komunitas dengan berbagi pengetahuan.
+                    </p>
+                  </div>
+                </div>
+                <Link href="/materi/upload">
+                  <Button className="gap-2 shrink-0">
+                    <Plus className="h-4 w-4" />
+                    Upload Materi
+                  </Button>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
         </section>
       </div>
       <Footer />
