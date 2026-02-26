@@ -265,6 +265,7 @@ export default function CoretaxSPTPage() {
             { title: "SPT — Ketentuan Umum", desc: "Jenis SPT, batas waktu, pembetulan per KUP", href: "/kup/spt" },
             { title: "e-Faktur Coretax", desc: "Buat faktur pajak yang jadi dasar SPT Masa PPN", href: "/coretax/e-faktur" },
             { title: "Pembayaran & Billing", desc: "Cara bayar kekurangan pajak dari SPT", href: "/coretax/pembayaran" },
+            { title: "Panduan Total SPT Karyawan 2025", desc: "Playbook lengkap dari aktivasi akun sampai BPE", href: "/materi/panduan-total-lapor-spt-karyawan-coretax-2025" },
             { title: "PPh Pasal 21", desc: "Perhitungan PPh 21 dengan TER", href: "/pph/pasal-21" },
           ].map((item) => (
             <Link key={item.href} href={item.href}>

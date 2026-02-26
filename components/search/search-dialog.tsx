@@ -45,6 +45,7 @@ const SEARCH_ITEMS: SearchItem[] = [
   { title: "Tutorial Login & Aktivasi Coretax", href: "/coretax/tutorial", category: "Coretax", icon: Monitor },
   { title: "e-Faktur Web Coretax", href: "/coretax/e-faktur", category: "Coretax", icon: Monitor },
   { title: "Pelaporan SPT di Coretax", href: "/coretax/spt", category: "Coretax", icon: Monitor },
+  { title: "Panduan Total SPT Karyawan via Coretax 2025", href: "/materi/panduan-total-lapor-spt-karyawan-coretax-2025", category: "Coretax", icon: Monitor },
   { title: "Pembayaran & Billing Coretax", href: "/coretax/pembayaran", category: "Coretax", icon: Monitor },
   { title: "Troubleshooting Coretax", href: "/coretax/troubleshooting", category: "Coretax", icon: Monitor },
   { title: "Glosarium Istilah Pajak", href: "/glosarium", category: "Referensi", icon: BookOpen },

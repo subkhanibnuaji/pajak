@@ -239,7 +239,7 @@ export default function HomePage() {
 
                 <div className="mt-3 flex flex-wrap gap-1.5 text-xs text-muted-foreground">
                   <span className="rounded-full bg-muted px-2 py-0.5">
-                    {doc.pages} halaman
+                    {doc.pages} {doc.pagesLabel ?? "halaman"}
                   </span>
                   <span className="rounded-full bg-muted px-2 py-0.5">
                     {formatBytesToMB(doc.fileSizeBytes)}
@@ -247,26 +247,41 @@ export default function HomePage() {
                   <span className="rounded-full bg-muted px-2 py-0.5">
                     Update {doc.updatedAt}
                   </span>
+                  <span className="rounded-full bg-muted px-2 py-0.5">
+                    {doc.fileType}
+                  </span>
                 </div>
 
                 <div className="mt-4 flex flex-wrap gap-2">
-                  <a
-                    href={doc.filePath}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 rounded-md border border-input bg-background px-3 py-1.5 text-xs font-medium hover:bg-accent"
-                  >
-                    <ExternalLink className="h-3.5 w-3.5" />
-                    Buka PDF
-                  </a>
-                  <a
-                    href={doc.filePath}
-                    download
-                    className="inline-flex items-center gap-1 rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground hover:bg-primary/90"
-                  >
-                    <Download className="h-3.5 w-3.5" />
-                    Download
-                  </a>
+                  {doc.isInternal ? (
+                    <Link
+                      href={doc.filePath}
+                      className="inline-flex items-center gap-1 rounded-md border border-input bg-background px-3 py-1.5 text-xs font-medium hover:bg-accent"
+                    >
+                      <ExternalLink className="h-3.5 w-3.5" />
+                      Buka Panduan
+                    </Link>
+                  ) : (
+                    <a
+                      href={doc.filePath}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 rounded-md border border-input bg-background px-3 py-1.5 text-xs font-medium hover:bg-accent"
+                    >
+                      <ExternalLink className="h-3.5 w-3.5" />
+                      Buka File
+                    </a>
+                  )}
+                  {(doc.downloadPath || !doc.isInternal) && (
+                    <a
+                      href={doc.downloadPath ?? doc.filePath}
+                      download
+                      className="inline-flex items-center gap-1 rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground hover:bg-primary/90"
+                    >
+                      <Download className="h-3.5 w-3.5" />
+                      {doc.fileType === "GUIDE" ? "Unduh Kit" : "Download"}
+                    </a>
+                  )}
                 </div>
               </CardContent>
             </Card>

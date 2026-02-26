@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { BookOpen, CalendarClock, Download, ExternalLink, FileText, LibraryBig } from "lucide-react";
 import { Footer } from "@/components/layout/footer";
 import { Badge } from "@/components/ui/badge";
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
   description: "Library dokumen materi dan riset perpajakan yang bisa dibuka online dan diunduh.",
 };
 
-const TOTAL_PAGES = MATERIAL_LIBRARY.reduce((total, item) => total + item.pages, 0);
+const TOTAL_CONTENT_UNITS = MATERIAL_LIBRARY.reduce((total, item) => total + item.pages, 0);
 const TOTAL_SIZE_MB = MATERIAL_LIBRARY
   .reduce((total, item) => total + item.fileSizeBytes, 0) /
   (1024 * 1024);
@@ -47,8 +48,8 @@ export default function MateriPage() {
             <p className="text-xs text-muted-foreground">Dokumen</p>
           </div>
           <div className="rounded-lg border p-4">
-            <p className="text-2xl font-bold text-primary">{TOTAL_PAGES}</p>
-            <p className="text-xs text-muted-foreground">Total Halaman</p>
+            <p className="text-2xl font-bold text-primary">{TOTAL_CONTENT_UNITS}</p>
+            <p className="text-xs text-muted-foreground">Total Unit Konten</p>
           </div>
           <div className="rounded-lg border p-4">
             <p className="text-2xl font-bold text-primary">{TOTAL_SIZE_MB.toFixed(1)} MB</p>
@@ -82,11 +83,11 @@ export default function MateriPage() {
                   <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[11px] text-white/95">
                     <span className="inline-flex items-center gap-1 rounded-full bg-black/40 px-2 py-1 backdrop-blur-sm">
                       <FileText className="h-3 w-3" />
-                      {doc.pages} halaman
+                      {doc.pages} {doc.pagesLabel ?? "halaman"}
                     </span>
                     <span className="inline-flex items-center gap-1 rounded-full bg-black/40 px-2 py-1 backdrop-blur-sm">
                       <BookOpen className="h-3 w-3" />
-                      PDF
+                      {doc.fileType}
                     </span>
                   </div>
                 </div>
@@ -136,23 +137,43 @@ export default function MateriPage() {
                 </CardContent>
 
                 <CardFooter className="mt-auto grid grid-cols-2 gap-2">
-                  <a
-                    href={doc.filePath}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={cn(buttonVariants({ variant: "outline", size: "sm" }), "w-full")}
-                  >
-                    <ExternalLink className="h-4 w-4" />
-                    Buka
-                  </a>
-                  <a
-                    href={doc.filePath}
-                    download
-                    className={cn(buttonVariants({ size: "sm" }), "w-full")}
-                  >
-                    <Download className="h-4 w-4" />
-                    Download
-                  </a>
+                  {doc.isInternal ? (
+                    <Link
+                      href={doc.filePath}
+                      className={cn(buttonVariants({ variant: "outline", size: "sm" }), "w-full")}
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                      Buka
+                    </Link>
+                  ) : (
+                    <a
+                      href={doc.filePath}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={cn(buttonVariants({ variant: "outline", size: "sm" }), "w-full")}
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                      Buka
+                    </a>
+                  )}
+                  {(doc.downloadPath || !doc.isInternal) ? (
+                    <a
+                      href={doc.downloadPath ?? doc.filePath}
+                      download
+                      className={cn(buttonVariants({ size: "sm" }), "w-full")}
+                    >
+                      <Download className="h-4 w-4" />
+                      {doc.fileType === "GUIDE" ? "Unduh Kit" : "Download"}
+                    </a>
+                  ) : (
+                    <Link
+                      href={doc.filePath}
+                      className={cn(buttonVariants({ size: "sm" }), "w-full")}
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                      Detail
+                    </Link>
+                  )}
                 </CardFooter>
               </Card>
             ))}
