@@ -51,7 +51,8 @@ export const MATERIAL_LIBRARY: MaterialDocument[] = [
     updatedAt: "2026-02-26",
     publisher: "Dokumen User",
     coverPath: "/materials/covers/spt-tahunan-2025-kit.svg",
-    filePath: "/materials/spt-tahunan-2025-kit.xlsx",
+    filePath: "https://docs.google.com/spreadsheets/d/1mKDN-rYCbvGk4wFas-09w7T9IlWfgUg7/edit?usp=sharing&ouid=115043369604568201298&rtpof=true&sd=true",
+    downloadPath: "/materials/spt-tahunan-2025-kit.xlsx",
     tags: ["Workbook", "Template", "Checklist", "Coretax"],
   },
   {
