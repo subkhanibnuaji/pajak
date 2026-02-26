@@ -42,4 +42,12 @@ export const GLOSSARY: GlossaryEntry[] = [
   { istilah: "Kredit Pajak", definisi: "Pajak yang telah dipotong/dipungut/dibayar yang dapat dikurangkan dari PPh terutang akhir tahun.", kategori: "pph" },
   { istilah: "MAP", definisi: "Kode Mata Anggaran Penerimaan — kode yang menentukan jenis pajak pada saat penyetoran.", kategori: "kup" },
   { istilah: "KJS", definisi: "Kode Jenis Setoran — kode yang menentukan jenis setoran pajak dalam billing.", kategori: "kup" },
+  { istilah: "SIAP", definisi: "Sistem Inti Administrasi Perpajakan — nama resmi Coretax DJP, sistem administrasi pajak terpadu yang berlaku sejak Januari 2025.", kategori: "kup", dasarHukum: "PP 44/2024" },
+  { istilah: "Deposit Pajak", definisi: "Dana yang disetor ke akun wajib pajak di Coretax tanpa terikat jenis pajak tertentu, bisa digunakan untuk membayar pajak apa saja.", kategori: "kup", dasarHukum: "PMK 81/2024 Pasal 1 angka 112" },
+  { istilah: "Impersonasi", definisi: "Fitur di Coretax untuk beralih dari akun pribadi (NIK pengurus) ke akun WP Badan yang dikelola.", kategori: "kup" },
+  { istilah: "NSFP", definisi: "Nomor Seri Faktur Pajak — nomor identitas faktur pajak. Di Coretax, NSFP digenerate otomatis (17 digit).", kategori: "ppn" },
+  { istilah: "e-Bupot", definisi: "Bukti Potong Elektronik — aplikasi di Coretax untuk membuat bukti potong PPh (21, 23, 26, 4(2)) secara unifikasi.", kategori: "pph" },
+  { istilah: "BPE", definisi: "Bukti Penerimaan Elektronik — bukti resmi bahwa SPT telah diterima oleh DJP melalui Coretax.", kategori: "kup" },
+  { istilah: "Kode Otorisasi DJP", definisi: "Tanda tangan digital yang digunakan di Coretax untuk menandatangani faktur pajak, bukti potong, dan SPT.", kategori: "kup" },
+  { istilah: "PMK 81/2024", definisi: "Peraturan Menteri Keuangan tentang ketentuan perpajakan dalam pelaksanaan Coretax (SIAP). Mencabut 42 regulasi lama.", kategori: "kup", dasarHukum: "PMK 81/2024" },
 ];
