@@ -69,6 +69,12 @@ export function SiteHeader({ onSearchOpen }: SiteHeaderProps) {
           >
             Kalkulator
           </Link>
+          <Link
+            href="/materi"
+            className="px-3 py-2 rounded-md hover:bg-accent transition-colors"
+          >
+            Materi
+          </Link>
         </nav>
 
         {/* Right side actions */}

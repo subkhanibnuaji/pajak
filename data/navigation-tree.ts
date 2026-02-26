@@ -11,6 +11,7 @@ import {
   Gift,
   Landmark,
   Monitor,
+  LibraryBig,
   type LucideIcon,
 } from "lucide-react";
 
@@ -166,6 +167,12 @@ export const TOOLS_NAV: NavItem[] = [
     title: "Regulasi",
     href: "/regulasi",
     icon: BookMarked,
+  },
+  {
+    title: "Materi & Riset",
+    href: "/materi",
+    icon: LibraryBig,
+    badge: "PDF",
   },
   {
     title: "Glosarium",

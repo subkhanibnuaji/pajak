@@ -62,6 +62,11 @@ export function Footer() {
                   Studi Kasus
                 </Link>
               </li>
+              <li>
+                <Link href="/materi" className="hover:text-foreground transition-colors">
+                  Materi & Riset
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

@@ -10,6 +10,7 @@ import {
   Scale,
   Building2,
   Monitor,
+  LibraryBig,
   Search,
   X,
 } from "lucide-react";
@@ -48,6 +49,7 @@ const SEARCH_ITEMS: SearchItem[] = [
   { title: "Troubleshooting Coretax", href: "/coretax/troubleshooting", category: "Coretax", icon: Monitor },
   { title: "Glosarium Istilah Pajak", href: "/glosarium", category: "Referensi", icon: BookOpen },
   { title: "Kalender Pajak", href: "/kalender", category: "Referensi", icon: BookOpen },
+  { title: "Materi & Riset", href: "/materi", category: "Referensi", icon: LibraryBig },
 ];
 
 interface SearchDialogProps {

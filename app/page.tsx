@@ -13,9 +13,12 @@ import {
   ArrowRight,
   Calendar,
   BookMarked,
+  Download,
+  ExternalLink,
 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { MATERIAL_LIBRARY, formatBytesToMB } from "@/data/material-library";
 
 const KNOWLEDGE_CATEGORIES = [
   {
@@ -193,6 +196,80 @@ export default function HomePage() {
                 </CardContent>
               </Card>
             </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* User Materials */}
+      <section className="mb-12">
+        <div className="mb-4 flex items-end justify-between gap-3">
+          <div>
+            <h2 className="text-xl font-semibold">Materi & Riset</h2>
+            <p className="text-sm text-muted-foreground mt-1">
+              Dokumen dari user, disusun sebagai library agar mudah diakses dan diunduh.
+            </p>
+          </div>
+          <Link
+            href="/materi"
+            className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
+          >
+            Buka Semua
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-2">
+          {MATERIAL_LIBRARY.map((doc) => (
+            <Card
+              key={doc.id}
+              className="h-full border-border/80 transition-all hover:border-primary/40 hover:shadow-md"
+            >
+              <CardContent className="p-4">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <p className="font-medium text-sm">{doc.title}</p>
+                    <p className="mt-0.5 text-xs text-muted-foreground line-clamp-2">
+                      {doc.description}
+                    </p>
+                  </div>
+                  <Badge variant="secondary" className="text-[10px] shrink-0">
+                    {doc.category}
+                  </Badge>
+                </div>
+
+                <div className="mt-3 flex flex-wrap gap-1.5 text-xs text-muted-foreground">
+                  <span className="rounded-full bg-muted px-2 py-0.5">
+                    {doc.pages} halaman
+                  </span>
+                  <span className="rounded-full bg-muted px-2 py-0.5">
+                    {formatBytesToMB(doc.fileSizeBytes)}
+                  </span>
+                  <span className="rounded-full bg-muted px-2 py-0.5">
+                    Update {doc.updatedAt}
+                  </span>
+                </div>
+
+                <div className="mt-4 flex flex-wrap gap-2">
+                  <a
+                    href={doc.filePath}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 rounded-md border border-input bg-background px-3 py-1.5 text-xs font-medium hover:bg-accent"
+                  >
+                    <ExternalLink className="h-3.5 w-3.5" />
+                    Buka PDF
+                  </a>
+                  <a
+                    href={doc.filePath}
+                    download
+                    className="inline-flex items-center gap-1 rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground hover:bg-primary/90"
+                  >
+                    <Download className="h-3.5 w-3.5" />
+                    Download
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </section>
