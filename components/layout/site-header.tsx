@@ -58,16 +58,16 @@ export function SiteHeader({ onSearchOpen }: SiteHeaderProps) {
             KUP
           </Link>
           <Link
+            href="/coretax"
+            className="px-3 py-2 rounded-md hover:bg-accent transition-colors font-medium text-primary"
+          >
+            Coretax
+          </Link>
+          <Link
             href="/kalkulator"
             className="px-3 py-2 rounded-md hover:bg-accent transition-colors"
           >
             Kalkulator
-          </Link>
-          <Link
-            href="/kasus"
-            className="px-3 py-2 rounded-md hover:bg-accent transition-colors"
-          >
-            Kasus
           </Link>
         </nav>
 

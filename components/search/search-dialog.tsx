@@ -9,6 +9,7 @@ import {
   FileText,
   Scale,
   Building2,
+  Monitor,
   Search,
   X,
 } from "lucide-react";
@@ -39,6 +40,12 @@ const SEARCH_ITEMS: SearchItem[] = [
   { title: "Kalkulator PPh 21", href: "/kalkulator/pph-21", category: "Kalkulator", icon: Calculator },
   { title: "Kalkulator PPh Badan", href: "/kalkulator/pph-badan", category: "Kalkulator", icon: Calculator },
   { title: "Kalkulator PPN", href: "/kalkulator/ppn", category: "Kalkulator", icon: Calculator },
+  { title: "Coretax DJP — Sistem Baru Pajak 2025", href: "/coretax", category: "Coretax", icon: Monitor },
+  { title: "Tutorial Login & Aktivasi Coretax", href: "/coretax/tutorial", category: "Coretax", icon: Monitor },
+  { title: "e-Faktur Web Coretax", href: "/coretax/e-faktur", category: "Coretax", icon: Monitor },
+  { title: "Pelaporan SPT di Coretax", href: "/coretax/spt", category: "Coretax", icon: Monitor },
+  { title: "Pembayaran & Billing Coretax", href: "/coretax/pembayaran", category: "Coretax", icon: Monitor },
+  { title: "Troubleshooting Coretax", href: "/coretax/troubleshooting", category: "Coretax", icon: Monitor },
   { title: "Glosarium Istilah Pajak", href: "/glosarium", category: "Referensi", icon: BookOpen },
   { title: "Kalender Pajak", href: "/kalender", category: "Referensi", icon: BookOpen },
 ];
@@ -106,7 +113,7 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
             <Command.Empty className="py-6 text-center text-sm text-muted-foreground">
               Tidak ditemukan hasil untuk &quot;{search}&quot;
             </Command.Empty>
-            {["PPh", "PPN", "KUP", "PBB", "Kalkulator", "Referensi"].map(
+            {["PPh", "PPN", "KUP", "PBB", "Coretax", "Kalkulator", "Referensi"].map(
               (category) => {
                 const items = SEARCH_ITEMS.filter(
                   (item) => item.category === category

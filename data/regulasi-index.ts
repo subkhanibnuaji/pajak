@@ -38,4 +38,13 @@ export const REGULASI_INDEX: RegulasiEntry[] = [
   { nomor: "PMK-81/2024", judul: "Ketentuan Perpajakan dalam rangka Pelaksanaan Sistem Inti Administrasi Perpajakan (Coretax)", tipe: "PMK", tahun: 2024, topik: ["Coretax", "KUP"], status: "berlaku" },
   { nomor: "PMK-172/2023", judul: "Penerapan Prinsip Kewajaran dan Kelaziman Usaha dalam Transaksi yang Dipengaruhi Hubungan Istimewa", tipe: "PMK", tahun: 2023, topik: ["Transfer Pricing"], status: "berlaku" },
   { nomor: "PMK-101/2016", judul: "Penyesuaian Besarnya PTKP", tipe: "PMK", tahun: 2016, topik: ["PPh", "PTKP"], status: "berlaku", catatan: "PTKP terakhir, masih berlaku" },
+  { nomor: "PMK-136/2025", judul: "Perubahan atas PMK 81/2024 tentang Ketentuan Perpajakan dalam Pelaksanaan SIAP (Coretax)", tipe: "PMK", tahun: 2025, topik: ["Coretax", "KUP"], status: "berlaku", catatan: "Penyempurnaan PMK 81/2024" },
+  { nomor: "PP 44/2024", judul: "Sistem Inti Administrasi Perpajakan (SIAP)", tipe: "PP", tahun: 2024, topik: ["Coretax"], status: "berlaku", catatan: "Payung hukum utama Coretax DJP" },
+
+  // KEP
+  { nomor: "KEP-54/PJ/2025", judul: "Penetapan PKP yang Dapat Menggunakan e-Faktur Client Desktop", tipe: "KEP", tahun: 2025, topik: ["Coretax", "e-Faktur", "PPN"], status: "berlaku", catatan: "Fallback e-Faktur Desktop selama transisi" },
+  { nomor: "KEP-67/PJ/2025", judul: "Penetapan Relaksasi Sanksi Administrasi Masa Transisi Coretax", tipe: "KEP", tahun: 2025, topik: ["Coretax", "Sanksi"], status: "berlaku", catatan: "Relaksasi sanksi selama kendala Coretax" },
+
+  // PER
+  { nomor: "PER-11/PJ/2025", judul: "Tata Cara Pelaporan PPh, PPN, PPnBM, Bea Meterai dalam Coretax", tipe: "PER", tahun: 2025, topik: ["Coretax", "SPT", "e-Faktur", "e-Bupot"], status: "berlaku", catatan: "Mencabut 25 PER lama, format SPT baru" },
 ];

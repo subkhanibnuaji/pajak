@@ -10,6 +10,7 @@ import {
   Laptop,
   Gift,
   Landmark,
+  Monitor,
   type LucideIcon,
 } from "lucide-react";
 
@@ -95,6 +96,20 @@ export const KNOWLEDGE_NAV: NavItem[] = [
     icon: Building2,
     children: [
       { title: "BPHTB", href: "/pbb/bphtb" },
+    ],
+  },
+  {
+    title: "Coretax DJP",
+    href: "/coretax",
+    icon: Monitor,
+    badge: "2025",
+    children: [
+      { title: "Tutorial Login & Aktivasi", href: "/coretax/tutorial" },
+      { title: "Taxpayer Account", href: "/coretax/taxpayer-account" },
+      { title: "e-Faktur Web-Based", href: "/coretax/e-faktur" },
+      { title: "Pelaporan SPT", href: "/coretax/spt" },
+      { title: "Pembayaran & Billing", href: "/coretax/pembayaran" },
+      { title: "Troubleshooting", href: "/coretax/troubleshooting" },
     ],
   },
   {

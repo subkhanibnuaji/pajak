@@ -8,7 +8,7 @@ import { REGULASI_INDEX } from "@/data/regulasi-index";
 import { REGULASI_COLORS, getRegulasiType } from "@/lib/constants";
 import { Footer } from "@/components/layout/footer";
 
-const TIPE_OPTIONS = ["UU", "PP", "PMK", "PER", "SE"];
+const TIPE_OPTIONS = ["UU", "PP", "PMK", "PER", "SE", "KEP"];
 
 export default function RegulasiPage() {
   const [search, setSearch] = useState("");
