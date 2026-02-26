@@ -94,6 +94,10 @@ export function formatBytesToMB(bytes: number): string {
   if (bytes <= 0) {
     return "-";
   }
+  const kb = bytes / 1024;
+  if (kb < 1024) {
+    return `${Math.max(1, Math.round(kb))} KB`;
+  }
   const mb = bytes / (1024 * 1024);
   return `${mb.toFixed(1)} MB`;
 }
