@@ -12,6 +12,10 @@ import {
   Landmark,
   Monitor,
   LibraryBig,
+  Bot,
+  Bell,
+  Users,
+  File,
   type LucideIcon,
 } from "lucide-react";
 
@@ -141,6 +145,36 @@ export const KNOWLEDGE_NAV: NavItem[] = [
     title: "Fasilitas & Insentif",
     href: "/fasilitas-insentif",
     icon: Gift,
+  },
+];
+
+export const SUPER_APP_NAV: NavItem[] = [
+  {
+    title: "AI Tax Assistant",
+    href: "/ai-assistant",
+    icon: Bot,
+    badge: "New",
+  },
+  {
+    title: "Regulatory Alerts",
+    href: "/alerts",
+    icon: Bell,
+    badge: "5 New",
+  },
+  {
+    title: "ASEAN Tax Hub",
+    href: "/asean",
+    icon: Globe,
+  },
+  {
+    title: "Template Library",
+    href: "/templates",
+    icon: File,
+  },
+  {
+    title: "Community",
+    href: "/community",
+    icon: Users,
   },
 ];
 

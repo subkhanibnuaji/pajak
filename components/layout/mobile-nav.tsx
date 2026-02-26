@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { SidebarNav } from "./sidebar-nav";
-import { KNOWLEDGE_NAV, TOOLS_NAV } from "@/data/navigation-tree";
+import { KNOWLEDGE_NAV, SUPER_APP_NAV, TOOLS_NAV } from "@/data/navigation-tree";
 import { useUIStore } from "@/lib/stores/ui-store";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -63,6 +63,13 @@ export function MobileNav() {
           </Button>
         </div>
         <ScrollArea className="h-[calc(100vh-3.5rem)] py-4 px-3 overflow-y-auto">
+          <div className="mb-4">
+            <h4 className="mb-2 px-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              Super App Features
+            </h4>
+            <SidebarNav items={SUPER_APP_NAV} />
+          </div>
+          <Separator className="my-4" />
           <div className="mb-4">
             <h4 className="mb-2 px-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
               Knowledge Base

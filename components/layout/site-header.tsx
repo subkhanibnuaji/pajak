@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, Search, Bookmark } from "lucide-react";
+import { Menu, Search, Bookmark, Bot, Bell } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "./theme-toggle";
 import { useUIStore } from "@/lib/stores/ui-store";
+import { Badge } from "@/components/ui/badge";
 
 interface SiteHeaderProps {
   onSearchOpen?: () => void;
@@ -40,6 +41,34 @@ export function SiteHeader({ onSearchOpen }: SiteHeaderProps) {
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-1 text-sm">
           <Link
+            href="/ai-assistant"
+            className="px-3 py-2 rounded-md hover:bg-accent transition-colors flex items-center gap-1.5 text-violet-600 font-medium"
+          >
+            <Bot className="h-4 w-4" />
+            AI
+            <Badge className="ml-0.5 text-[8px] px-1 py-0 h-4 bg-violet-100 text-violet-700 border-violet-200">New</Badge>
+          </Link>
+          <Link
+            href="/alerts"
+            className="px-3 py-2 rounded-md hover:bg-accent transition-colors flex items-center gap-1.5"
+          >
+            <Bell className="h-4 w-4" />
+            Alerts
+          </Link>
+          <Link
+            href="/asean"
+            className="px-3 py-2 rounded-md hover:bg-accent transition-colors"
+          >
+            ASEAN
+          </Link>
+          <Link
+            href="/community"
+            className="px-3 py-2 rounded-md hover:bg-accent transition-colors"
+          >
+            Community
+          </Link>
+          <div className="w-px h-4 bg-border mx-1" />
+          <Link
             href="/pph"
             className="px-3 py-2 rounded-md hover:bg-accent transition-colors"
           >
@@ -52,28 +81,10 @@ export function SiteHeader({ onSearchOpen }: SiteHeaderProps) {
             PPN
           </Link>
           <Link
-            href="/kup"
-            className="px-3 py-2 rounded-md hover:bg-accent transition-colors"
-          >
-            KUP
-          </Link>
-          <Link
             href="/coretax"
             className="px-3 py-2 rounded-md hover:bg-accent transition-colors font-medium text-primary"
           >
             Coretax
-          </Link>
-          <Link
-            href="/kalkulator"
-            className="px-3 py-2 rounded-md hover:bg-accent transition-colors"
-          >
-            Kalkulator
-          </Link>
-          <Link
-            href="/materi"
-            className="px-3 py-2 rounded-md hover:bg-accent transition-colors"
-          >
-            Materi
           </Link>
         </nav>
 
