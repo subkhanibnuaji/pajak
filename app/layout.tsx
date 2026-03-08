@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SITE_CONFIG } from "@/lib/constants";
 import { ThemeProvider } from "@/components/theme-provider";
 import { AppShell } from "@/components/layout/app-shell";
+import { ProtectedRoute } from "@/components/providers/protected-route";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -29,7 +30,9 @@ export default function RootLayout({
     <html lang="id" suppressHydrationWarning>
       <body className="font-sans antialiased">
         <ThemeProvider>
-          <AppShell>{children}</AppShell>
+          <ProtectedRoute>
+            <AppShell>{children}</AppShell>
+          </ProtectedRoute>
         </ThemeProvider>
       </body>
     </html>

@@ -33,6 +33,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "./theme-toggle";
+import { UserMenu } from "@/components/auth/user-menu";
 import { useUIStore } from "@/lib/stores/ui-store";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
@@ -468,6 +469,7 @@ export function SiteHeader({ onSearchOpen }: SiteHeaderProps) {
           </Link>
           
           <ThemeToggle />
+          <UserMenu />
         </div>
       </div>
 
