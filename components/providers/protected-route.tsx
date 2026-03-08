@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { Loader2 } from 'lucide-react';
 
-const AUTH_KEY = 'pajak_auth';
+const STORAGE_KEY = '__app_auth__';
 
 export function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -13,19 +13,16 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Check authentication
-    const authStatus = localStorage.getItem(AUTH_KEY);
+    const authStatus = localStorage.getItem(`${STORAGE_KEY}_authenticated`);
     
-    if (authStatus === 'authenticated') {
+    if (authStatus === 'true') {
       setIsAuthenticated(true);
     } else if (pathname !== '/login') {
       router.push('/login');
     }
-    
     setIsLoading(false);
   }, [pathname, router]);
 
-  // Show loading spinner while checking auth
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -34,12 +31,10 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
     );
   }
 
-  // Allow access to login page without authentication
   if (pathname === '/login') {
     return <>{children}</>;
   }
 
-  // Protect other routes
   if (!isAuthenticated) {
     return null;
   }

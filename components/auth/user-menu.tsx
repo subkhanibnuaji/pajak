@@ -1,8 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { UserCircle2, LogOut, Bookmark } from "lucide-react";
+import { LogOut, UserCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -12,22 +10,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useSession } from "@/hooks/use-session";
-
-function initials(name: string) {
-  const parts = name.trim().split(/\s+/).slice(0, 2);
-  return parts.map((value) => value[0]?.toUpperCase() || "").join("");
-}
+import { useAuth } from "@/hooks/use-auth";
 
 export function UserMenu() {
-  const router = useRouter();
-  const { user, isLoading, logout } = useSession();
-
-  async function handleLogout() {
-    await logout();
-    router.push("/login");
-    router.refresh();
-  }
+  const { user, isLoading, logout } = useAuth();
 
   if (isLoading) {
     return (
@@ -40,7 +26,7 @@ export function UserMenu() {
   if (!user) {
     return (
       <Button asChild size="sm" variant="ghost">
-        <Link href="/login">Login</Link>
+        <a href="/login">Login</a>
       </Button>
     );
   }
@@ -50,28 +36,22 @@ export function UserMenu() {
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="sm" className="gap-2">
           <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary">
-            {initials(user.name)}
+            {user.username.charAt(0).toUpperCase()}
           </span>
           <span className="hidden max-w-[120px] truncate md:inline">
-            {user.name}
+            {user.username}
           </span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
         <DropdownMenuLabel>
           <div className="flex flex-col">
-            <span className="font-medium">{user.name}</span>
-            <span className="text-xs text-muted-foreground">{user.email}</span>
+            <span className="font-medium">{user.username}</span>
+            <span className="text-xs text-muted-foreground">Administrator</span>
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem asChild>
-          <Link href="/glosarium">
-            <Bookmark className="size-4 mr-2" />
-            Glosarium
-          </Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={handleLogout}>
+        <DropdownMenuItem onClick={logout}>
           <LogOut className="size-4 mr-2" />
           Logout
         </DropdownMenuItem>
