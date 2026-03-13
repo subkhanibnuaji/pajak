@@ -19,6 +19,23 @@ export interface MaterialDocument {
 
 export const MATERIAL_LIBRARY: MaterialDocument[] = [
   {
+    id: "decision-making-planning-notes",
+    title: "Decision Making & Planning: Notes Youtube dan Kisi-kisi UTS",
+    description:
+      "Catatan ringkas materi decision making, planning, dan etika bisnis dari video/slide kuliah, termasuk utilitarianism, rights, justice, external cost, serta perbandingan classical dan administrative model.",
+    category: "Catatan Kuliah",
+    year: 2022,
+    pages: 7,
+    pagesLabel: "halaman",
+    fileType: "PDF",
+    fileSizeBytes: 359616,
+    updatedAt: "2026-03-13",
+    publisher: "Dokumen User",
+    coverPath: "/materials/covers/decision-making-planning-notes.png",
+    filePath: "/materials/decision-making-planning-notes.pdf",
+    tags: ["Decision Making", "Planning", "Etika Bisnis", "UTS"],
+  },
+  {
     id: "global-tax-knowledge-platform-landscape",
     title: "Global Tax Knowledge Platform Landscape: Competitive Intelligence Research",
     description:
