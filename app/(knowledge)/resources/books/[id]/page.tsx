@@ -40,6 +40,8 @@ import {
 // 📌 CUSTOMIZE PER REPO: tidak ada yang perlu diubah di sini.
 // ============================================================
 
+import type { Metadata } from 'next';
+
 interface Props {
   params: Promise<{ id: string }>;
 }
@@ -48,6 +50,25 @@ export const dynamicParams = true;
 
 export function generateStaticParams() {
   return booksLibrary.map((b) => ({ id: b.id }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params;
+  const book = getBookById(id);
+
+  if (!book) {
+    return {
+      title: 'Buku Tidak Ditemukan',
+      description: 'Buku perpajakan yang Anda cari tidak ditemukan.',
+    };
+  }
+
+  return {
+    title: `${book.title} — Perpustakaan Perpajakan`,
+    description:
+      book.description ||
+      `Buku perpajakan: ${book.title} oleh ${book.authors.join(', ')}. Pelajari lebih lanjut dari perpustakaan referensi perpajakan kami.`,
+  };
 }
 
 export default async function BookDetailPage({ params }: Props) {
